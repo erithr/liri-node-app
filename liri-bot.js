@@ -13,7 +13,7 @@ const bandsintown = keys.bandsintown;
 //get user input
 const input = process.argv[2];
 
-const ask = process.argv[3];
+const ask = process.argv.slice(3).join(" ");
 
 console.log("check below");
 //make a decision based on the command
@@ -76,6 +76,7 @@ function movieThis(){
     request('http://www.omdbapi.com/?t='+ ask +'&apikey='+ omdb +'&', function (error, response, body) {
         if (!error && response.statusCode ===200){
             let jsonData = JSON.parse(body);
+            
             console.log('Title ' + jsonData.Title);
             console.log('Year ' + jsonData.Year);
             console.log('IMDB Rating: ' + jsonData.imdbRating);
